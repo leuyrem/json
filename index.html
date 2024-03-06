@@ -12,20 +12,20 @@
 
         table {
             width: 300px;
-            background-color: lightcyan;
+            background-color: lightskyblue;
             text-align: center;
             margin: 0 auto;
-            border: 1px pink solid;
+            border: 3px palegoldenrod solid;
         }
 
 
         table tr:nth-child(even) {
-            background-color: #5a8dc7
+            
         }
 
         #myInput {
-            background-color: pink;
-            border: 1px solid lightgreen;
+            background-color: plum;
+            border: 3px double lightblue;
             text-align: center;
             margin: 50px 40%;
         }
@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <h3>우리반 학생</h3>
+    <h3>과일</h3>
     <div class="wrap"></div>
     <input id="myInput" type="text" placeholder="Search..">
 
@@ -54,12 +54,14 @@
                     for (let i in data) {
                         let id = data[i].id;
                         let name = data[i].name;
-                        let team = data[i].team;
+                        let price = data[i].price;
+                        var $kg = data[i].kg;
 
                         let row = $("<tr/>").append(
                             $("<td/>").text(id),
                             $("<td/>").text(name),
-                            $("<td/>").text(team),
+                            $("<td/>").text(price),
+                            $("<td>/").text($kg),
                         );
 
                         tb.append(row);
