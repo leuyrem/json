@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리반 학생</title>
+    <style>
+        h3 {
+            text-align: center;
+        }
+
+        table {
+            width: 300px;
+            background-color: lightcyan;
+            text-align: center;
+            margin: 0 auto;
+            border: 1px pink solid;
+        }
+
+
+        table tr:nth-child(even) {
+            background-color: #5a8dc7
+        }
+
+        #myInput {
+            background-color: pink;
+            border: 1px solid lightgreen;
+            text-align: center;
+            margin: 50px 40%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h3>우리반 학생</h3>
+    <div class="wrap"></div>
+    <input id="myInput" type="text" placeholder="Search..">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        $.ajax({
+            url: "./s01.json"
+        })
+
+            .done(function (data) {
+                console.log(data);
+                if (data.length > 0) {
+                    const tb = $("<table/>");
+
+                    for (let i in data) {
+                        let id = data[i].id;
+                        let name = data[i].name;
+                        let team = data[i].team;
+
+                        let row = $("<tr/>").append(
+                            $("<td/>").text(id),
+                            $("<td/>").text(name),
+                            $("<td/>").text(team),
+                        );
+
+                        tb.append(row);
+                    }
+
+                    $(".wrap").append(tb);
+                }
+
+            });
+
+
+        //search
+        $("#myInput").on("keyup", function () {
+            let value = $(this).val();
+            $(".wrap tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
+
+
+
+    </script>
+</body>
+
+</html>
